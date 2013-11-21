@@ -76,23 +76,134 @@ function conexion() {
         $("#dataBase").val("");
         $("#userName").val("");
         $("#password").val("");
-        crearGraficos();
+        infoTaxis();
     }
 }
 
+/**
+ * Encarga generar una tabla con los servicios respectivos a un taxi
+ */
+function infoTaxis(){
+        $(document).ready(function() {
+        $.ajax({
+            url: "php/conexion.php",
+            type: "post",
+            dataType: 'json',
+            data: {server: server,
+                db: db,
+                user: user,
+                pass: pass,
+                query: "select nombre from dbo.provincia"
+            }
+        }).done(function(response) {
+            if (response == -1) {
+                alert("Error de conexión");
+                server = null
+                db = null
+                user = null
+                pass = null
+            }
+            else {
+                if (response == -2) {
+                    booleanConexion = "0";
+                    server = null;
+                    db = null;
+                    user = null;
+                    pass = null;
+                    ;
+                }
+                else {
+                    booleanConexion = "1";
+                    //Oculta ventana emergente
+                    $(".ui-dialog-content").dialog("close");
+                    $('#background').hide();
+                    //Construir los Div para los n graficos
+                   if (response.length > 0)
+                        div = "<center><table border=1>";
+                        div +=  "<tr>";
+                        div +=  "<th scope='col'>ID Servicio</th>";
+                        div +=  "<th scope='col'>Inicio</th>"
+                        div +=  "<th scope='col'>Finalización</th>"
+                        div +=  "<th scope='col'>Costo</th>"
+                        div +=  "<th scope='col'>Origen</th>"
+                        div +=  "<th scope='col'>Destino</th>"
+                        div +=  "<th scope='col'>Chofer</th>"
+                        div +=  "</tr>";
+                    for (index = 0; index < response.length; ++index) {
+                           div += "<tr><td>"+response[index].id + +response[index].ini +response[index].fin +response[index].cost +response[index].orig +response[index].dest +response[index].chof +"</td></tr>"; 
+                    }
+                    div += "</table></center>";
+                    //Construir gráficos individualmente
+                    $("#titulo").html("Información de los Servicos de Taxis");
+                    $("#content_area").html(div);
+                }
+            }
+        });
+    });
+}
 
 
 /**
- * Devuelve el nombre del "radio" seleccionado
- * @param {type} ctrl Name del form y Name de los imput
- * @returns {unresolved} Retorna el nombre del seleccionado
+ * Encarga generar una tabla con los servicios respectivos a un bus
  */
-function getRadioButtonSelectedValue(ctrl) {
-    for (i = 0; i < ctrl.length; i++)
-        if (ctrl[i].checked)
-            return ctrl[i].value;
+function infoBuses(){
+        $(document).ready(function() {
+        $.ajax({
+            url: "php/conexion.php",
+            type: "post",
+            dataType: 'json',
+            data: {server: server,
+                db: db,
+                user: user,
+                pass: pass,
+                query: "select ID_Servicio,Inicio,Finalizacion,Costo,Origen,Destino,Chofer from informacionBuses"
+            }
+        }).done(function(response) {
+            if (response == -1) {
+                alert("Error de conexión");
+                server = null
+                db = null
+                user = null
+                pass = null
+            }
+            else {
+                if (response == -2) {
+                    booleanConexion = "0";
+                    server = null;
+                    db = null;
+                    user = null;
+                    pass = null;
+                    ;
+                }
+                else {
+                    booleanConexion = "1";
+                    //Oculta ventana emergente
+                    $(".ui-dialog-content").dialog("close");
+                    $('#background').hide();
+                    //Construir los Div para los n graficos
+                   if (response.length > 0)
+                        div = "<center><table border=1>";
+                        div +=  "<tr>";
+                        div +=  "<th scope='col'>ID Servicio</th>";
+                        div +=  "<th scope='col'>Inicio</th>"
+                        div +=  "<th scope='col'>Finalización</th>"
+                        div +=  "<th scope='col'>Costo</th>"
+                        div +=  "<th scope='col'>Origen</th>"
+                        div +=  "<th scope='col'>Destino</th>"
+                        div +=  "<th scope='col'>Chofer</th>"
+                        div +=  "</tr>";
+                    for (index = 0; index < response.length; ++index) {
+                          div += "<tr><td>"+response[index].id + +response[index].ini +response[index].fin +response[index].cost +response[index].orig +response[index].dest +response[index].chof +"</td></tr>";
+                    }
+                    div += "</table></center>";
+                    //Construir gráficos individualmente
+                    $("#titulo").html("Información de los Servicos de Taxis");
+                    $("#content_area").html(div);
+                }
+            }
+        });
+    });
 }
-
 
 
 

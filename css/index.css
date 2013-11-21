@@ -21,11 +21,6 @@ body{
     padding: 1em;
     width: 1000px;  
 }
-.graphic{
-    margin:0 auto;
-    height: 400px;
-    width: 500px;
-}
 #ingresoSistema {
     background-color: grey;
     border-radius: 20px;
@@ -91,16 +86,5 @@ nav li a:hover {
     display:none;
 }
 
-/*******************************
-         Create Files
-********************************/
-#contentFilegroup{
-    background-color: #ddd;
-    border-radius: 20px;
-    box-shadow:0 0 30px rgba(0,0,0,0.2);
-    margin: 0 auto;
-    width: 70%;
-    padding: 1em;
-}
 
 

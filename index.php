@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>SQL SERVER ADMIN</title>
+        <title>Sistema Distribuido</title>
         <meta charset="UTF-8" />      
         <link href='img/sql.png' rel='shortcut icon' type='image/png'>
         <script src="js/jquery.min.js"></script>
@@ -15,23 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="shortcut icon" href="../favicon.ico"> 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="js/modernizr.custom.63321.js"></script>       
-        <!--Graphic GOOGLE API-->
-        <script type="text/javascript" src="js/jsapi.js"></script>
-        <script type="text/javascript">
-            // Load the Visualization API and the piechart package.
-            google.load('visualization', '1.0', {'packages': ['corechart']});
-            // Set a callback to run when the Google Visualization API is loaded.
-            google.setOnLoadCallback(drawChart);
-            // Callback that creates and populates a data table,
-            // instantiates the pie chart, passes in the data and
-            // draws it.
-        </script>
-        <script>
-            $(function() {
-                $("#filegroup").buttonset();
-            });
-        </script>
+        <script src="js/modernizr.custom.63321.js"></script>              
     </head>
     <body>
 
@@ -41,20 +25,18 @@
             </header>
             <hr>
             <nav>
-                <li><a onclick="crearGraficos()" >Principal</a></li>
-                <li><a onclick="showNewDatabaseInterface()">Crear Base de Datos</a></li>
-                <li><a id="AddFileGroup" >Añadir FileGroup</a></li>
-                <li><a onclick="anadirArchivoGUI()">Añadir Archivos a FG</a></li>
-                <li><a id="conexion">Conexión a BD</a></li>
+                <li><a onclick="infoTaxis()" >Información de Taxis</a></li>
+                <li><a onclick="infoBuses()">Información de Buses</a></li>
+                <li><a id="conexion">Conexión a SGBD</a></li>
             </nav>           
             <br><br><hr><br>
             <center>
-                <h1 id="titulo">Estadistícas de uso</h1>
+                <h1 id="titulo">Sistema Distribuido de Servicio de Transporte Terrestre</h1>
             </center>
 
 
             <div id="background"></div>
-            <section id="graphic_area">
+            <section id="content_area">
                 <center>
                     <br>
                     <h2 style="color: red">No se ha realizado la conexión</h2>                
@@ -78,18 +60,6 @@
                     <p class="field">
                         <input id="password" type="password" name="password" onkeypress='return notspace();'  placeholder="Contraseña">
                         <i class="icon-lock icon-large"></i>
-                    </p>
-                    <p class="submit">
-                        <button type="submit" name="submit"><i class="icon-arrow-right icon-large"></i></button>
-                    </p>
-                </form>
-            </section>
-
-            <section id="NewFileGroup" class="dialog" title="New Filegroup">
-                <form class="form-1" method="post" action="javascript:AddFileGroup();" >
-                    <p class="field">
-                        <input id="FGName" type="text" name="Name" onkeypress='return notspace();' placeholder="FileGroup">
-                        <i class=""></i>
                     </p>
                     <p class="submit">
                         <button type="submit" name="submit"><i class="icon-arrow-right icon-large"></i></button>
