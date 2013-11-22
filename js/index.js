@@ -93,7 +93,7 @@ function infoTaxis(){
                 db: db,
                 user: user,
                 pass: pass,
-                query: "select nombre from dbo.provincia"
+                query: "select ID_Servicio,Inicio,Finalizacion,Costo,Origen,Destino,Chofer from informacionBuses"
             }
         }).done(function(response) {
             if (response == -1) {
@@ -119,7 +119,7 @@ function infoTaxis(){
                     $('#background').hide();
                     //Construir los Div para los n graficos
                    if (response.length > 0)
-                        div = "<center><table border=1>";
+                        div = "<br><center><table border=1>";
                         div +=  "<tr>";
                         div +=  "<th scope='col'>ID Servicio</th>";
                         div +=  "<th scope='col'>Inicio</th>"
@@ -130,7 +130,7 @@ function infoTaxis(){
                         div +=  "<th scope='col'>Chofer</th>"
                         div +=  "</tr>";
                     for (index = 0; index < response.length; ++index) {
-                           div += "<tr><td>"+response[index].id + +response[index].ini +response[index].fin +response[index].cost +response[index].orig +response[index].dest +response[index].chof +"</td></tr>"; 
+                           div += "<tr><td>"+response[index].id + "</td><td>" +response[index].ini+ "</td><td>" +response[index].fin +"</td><td>" +response[index].cost+"</td><td>" +response[index].orig+"</td><td>" +response[index].dest+"</td><td>" +response[index].chof +"</td></tr>"; 
                     }
                     div += "</table></center>";
                     //Construir gráficos individualmente
@@ -182,7 +182,7 @@ function infoBuses(){
                     $('#background').hide();
                     //Construir los Div para los n graficos
                    if (response.length > 0)
-                        div = "<center><table border=1>";
+                        div = "<br><center><table border=1>";
                         div +=  "<tr>";
                         div +=  "<th scope='col'>ID Servicio</th>";
                         div +=  "<th scope='col'>Inicio</th>"
@@ -193,11 +193,11 @@ function infoBuses(){
                         div +=  "<th scope='col'>Chofer</th>"
                         div +=  "</tr>";
                     for (index = 0; index < response.length; ++index) {
-                          div += "<tr><td>"+response[index].id + +response[index].ini +response[index].fin +response[index].cost +response[index].orig +response[index].dest +response[index].chof +"</td></tr>";
+                         div += "<tr><td>"+response[index].id + "</td><td>" +response[index].ini+ "</td><td>" +response[index].fin +"</td><td>" +response[index].cost+"</td><td>" +response[index].orig+"</td><td>" +response[index].dest+"</td><td>" +response[index].chof +"</td></tr>"; 
                     }
                     div += "</table></center>";
                     //Construir gráficos individualmente
-                    $("#titulo").html("Información de los Servicos de Taxis");
+                    $("#titulo").html("Información de los Servicos de Buses");
                     $("#content_area").html(div);
                 }
             }
